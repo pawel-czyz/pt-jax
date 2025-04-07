@@ -2,6 +2,7 @@ import jax
 import jax.numpy as jnp
 import jax.random as jrandom
 from jaxtyping import Float, Int, Array
+from pt_jax._types import RandomKey
 
 
 def _create_indices(m):
