@@ -93,15 +93,27 @@ def main():
 
     for i, ax in enumerate(axs.ravel()):
         smp = samples[:, i, :]  # (n_samples, n_chains, n_dims)
-        thinning = 10
-        ax.scatter(smp[::thinning, 0], smp[::thinning, 1], s=2, c="k", rasterized=True)
+        thinning = 5
+        ax.scatter(
+            smp[::thinning, 0],
+            smp[::thinning, 1],
+            s=1,
+            alpha=0.05,
+            c="darkblue",
+            rasterized=True,
+        )
         ax.spines[["top", "right"]].set_visible(False)
         ax.set_title(f"$\\beta={betas[i]:.3f}$")
         ax.set_xlabel("$x_1$")
         ax.set_ylabel("$x_2$")
+        ax.set_xlim(-5, 5)
+        ax.set_ylim(-5, 5)
+        ax.set_xticks([-3, 0, 3])
+        ax.set_yticks([-3, 0, 3])
+        ax.set_aspect("equal")
 
     fig.tight_layout()
-    fig.savefig("plot.pdf")
+    fig.savefig("plot.jpg")
 
 
 if __name__ == "__main__":
