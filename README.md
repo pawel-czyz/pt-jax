@@ -7,7 +7,7 @@ Minimal implementation of parallel tempering in JAX.
 
 Parallel tempering is a Markov chain Monte Carlo scheme, designed to sample from complex distributions (e.g., multimodal), for which the standard MCMC samplers may only pseudo-converge.
 
-**Note:** This repository serves *only as a proof of concept* and hosts [a slightly refactored version of the code from this blog post](https://pawel-czyz.github.io/posts/non-reversible-parallel-tempering.html). The goal is to have parallel tempering [supported directly in BlackJAX](https://github.com/blackjax-devs/blackjax/issues/740). However, due to other obligations, I cannot work on this refactoring it before Summer 2025 and before this refactoring happens, perhaps this implementation may be useful. After parallel tempering is implemented in BlackJAX, this repository will become read-only.
+**Note:** This repository serves *only as a proof of concept* and hosts [a slightly refactored version of the code from this blog post](https://pawel-czyz.github.io/posts/non-reversible-parallel-tempering.html). The goal is to have parallel tempering [supported directly in BlackJAX](https://github.com/blackjax-devs/blackjax/issues/740). However, due to other obligations, I cannot work on finishing the PR until Summer 2025. Hence, before the refactored implementation is added to BlackJAX, perhaps this interim implementation may be useful. After parallel tempering is implemented in BlackJAX, this repository will become read-only.
 
 ## Installation
 
@@ -16,6 +16,10 @@ $ pip install "git+https://github.com/pawel-czyz/pt-jax.git"
 ```
 
 (As this implementation is supposed to be temporary, it will not be uploaded to PyPI.) 
+
+## Usage
+
+See `examples/demo.py` for an example how to use this package together with the MALA sampler from BlackJAX together with non-reversible parallel tempering described in [S. Syed et al., *Non-Reversible Parallel Tempering: a Scalable Highly Parallel MCMC Scheme* (2019)](https://arxiv.org/abs/1905.02939).
 
 ## Alternatives
 
