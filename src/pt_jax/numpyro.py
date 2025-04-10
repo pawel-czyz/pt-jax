@@ -124,6 +124,8 @@ class ParallelTemperingSetting(NamedTuple):
     log_posterior_z: Any
     sample_prior_z: Any
 
+    z_to_x: Any
+
 
 def wrap_models(
     prior,
@@ -149,4 +151,5 @@ def wrap_models(
         log_posterior_z=log_posterior.logp_z,
         log_prior_z=log_prior.logp_z,
         sample_prior_z=sample_z_fn,
+        z_to_x=transforms.z_to_x,
     )
