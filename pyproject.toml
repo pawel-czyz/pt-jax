@@ -22,6 +22,7 @@ build-backend = "hatchling.build"
 dev = [
     "black>=25.1.0",
     "jupytext>=1.17.0",
+    "numpy>=2.2.4",
     "pre-commit>=4.2.0",
     "pytest>=8.3.5",
     "ruff>=0.11.4",

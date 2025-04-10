@@ -3,6 +3,32 @@ import jax.numpy as jnp
 import jax.random as jrandom
 
 
+def generate_sample_from_prior_kernel(
+    log_prob,
+    log_ref,
+    kernel_ref,
+    truncated_annealing_schedule,
+    kernel_generator,
+    truncated_params,
+):
+    kernel_other = generate_independent_annealed_kernel(
+        log_prob=log_prob,
+        log_ref=log_ref,
+        kernel_generator=kernel_generator,
+        params=truncated_params,
+        annealing_schedule=truncated_annealing_schedule,
+    )
+
+    def kernel(key, x):
+        x0, x_other = x[0], x[1:]
+        key1, key2 = jax.random.split(key)
+        x0_ = kernel_ref(key1, x0)
+        xother_ = kernel_other(key2, x_other)
+        return jnp.concatenate([jnp.expand_dims(x0_, 0), xother_], axis=0)
+
+    return kernel
+
+
 def generate_independent_annealed_kernel(
     log_prob,
     log_ref,
