@@ -20,11 +20,10 @@ def generate_sample_from_prior_kernel(
     )
 
     def kernel(key, x):
-        x0 = x[0, ...]
-        xother = x[1:, ...]
+        x0, x_other = x[0], x[1:]
         key1, key2 = jax.random.split(key)
         x0_ = kernel_ref(key1, x0)
-        xother_ = kernel_other(key2, xother)
+        xother_ = kernel_other(key2, x_other)
         return jnp.concatenate([jnp.expand_dims(x0_, 0), xother_], axis=0)
 
     return kernel
